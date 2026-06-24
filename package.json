@@ -1,0 +1,43 @@
+{
+  "name": "auto-diagram",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite",
+    "dev:lan:https": "HOST=0.0.0.0 HTTPS_CERT=certs/auto-diagram.pem HTTPS_KEY=certs/auto-diagram-key.pem npm run dev",
+    "dev:server": "tsx watch --exclude exports --exclude dist --exclude node_modules server/src/index.ts",
+    "dev:server:stable": "tsx server/src/index.ts",
+    "build": "tsc -b && vite build",
+    "start": "node dist/server/src/index.js",
+    "start:lan:https": "HOST=0.0.0.0 PORT=27300 HTTPS_CERT=certs/auto-diagram.pem HTTPS_KEY=certs/auto-diagram-key.pem node dist/server/src/index.js",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@types/dagre": "^0.7.54",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^5.0.0",
+    "cors": "^2.8.5",
+    "dagre": "^0.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "openai": "^5.0.0",
+    "ws": "^8.21.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "concurrently": "^9.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
